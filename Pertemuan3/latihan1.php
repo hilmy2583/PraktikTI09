@@ -56,7 +56,7 @@
         <td>
           <?php
           foreach ($ar_skill as $skill => $s) { ?>
-            <input type="checkbox" name="skills[]" value="<?= $s ?>"><?= $skill ?>
+            <input type="checkbox" name="skills[<?= $skill ?>]" value="<?= $s ?>"><?= $skill ?>
           <?php } ?>
         </td>
       </tr>
@@ -93,6 +93,7 @@
     $jk = $_POST['jkelamin'];
     $prodim = $_POST['prodi'];
     $skills = $_POST['skills'];
+    $skils = implode(", ", array_keys($skills));
     $email = $_POST['email'];
   }
   ?>
@@ -106,17 +107,15 @@
   print($skills);
   ?>
 
-  Skill :
-  <?php
-  foreach ($skills as $skil) { ?>
-    <?= $skil ?>,
-  <?php } ?><br>
-  Skor Skill :
   <?php
   $total = 0;
   foreach ($skills as $skil => $s) {
     $total += $s;
-  } 
+  } ?>
+  Skill : <?= $skils ?><br>
+  
+  Skor Skill :
+  <?php
   if (isset($_POST['proses'])){ ?>
     <?= $total ?>
   <?php } ?><br>
