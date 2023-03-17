@@ -9,7 +9,15 @@ include_once 'menu.php';
     <div class="container-fluid px-4">
       <h1>Selamat Datang di Halaman Admin</h1>
       <?php
-      include_once 'dashboard.php';
+      error_reporting(0);
+      $hal = $_GET['hal'];
+      if($hal == 'dashboard'){
+        include_once 'dashboard.php';
+      } elseif(!empty($hal)){
+        include_once '' . $hal . '.php';
+      } else {
+        include_once 'dashboard.php';
+      }
       ?>
     </div>
   </main>
