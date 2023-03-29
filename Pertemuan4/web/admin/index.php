@@ -11,6 +11,7 @@ include_once 'menu.php';
       <?php
       error_reporting(0);
       $hal = $_GET['hal'];
+      echo $hal;
       if($hal == 'dashboard'){
         include_once 'dashboard.php';
       } elseif(!empty($hal)){
