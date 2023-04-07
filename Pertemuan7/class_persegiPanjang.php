@@ -1,20 +1,20 @@
 <?php
 class PersegiPanjang{
-  private $sisi1;
-  private $sisi2;
+  private $panjang;
+  private $lebar;
 
-  function __construct($s1, $s2)
+  function __construct($p, $l)
   {
-    $this->sisi1 = $s1;
-    $this->sisi2 = $s2;
+    $this->panjang = $p;
+    $this->lebar = $l;
   }
   function getLuas()
   {
-    return $this->sisi1 * $this->sisi2;
+    return $this->panjang * $this->lebar;
   }
   function getKeliling()
   {
-    return ($this->sisi1 + $this->sisi2) * 2;
+    return ($this->panjang + $this->lebar) * 2;
   }
 }
 ?>
