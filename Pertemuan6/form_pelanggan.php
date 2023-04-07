@@ -3,6 +3,7 @@ require_once 'koneksi.php';
 ?>
 
 <form method="POST" action="proses_pelanggan.php">
+    <br>
     <div class="form-group row">
         <label for="kode" class="col-4 col-form-label">Kode</label>
         <div class="col-8">

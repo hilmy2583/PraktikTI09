@@ -3,13 +3,13 @@
 require_once 'koneksi.php';
 ?>
 <?php
-$sql = "SELECT * FROM pelanggan";
+$sql = "SELECT * FROM kartu";
 $rs = $dbh->query($sql);
 ?>
 <!-- <h1 class="mt-4">Tables</h1> -->
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a href="index.php?hal=dashboard">Dashboard</a></li>
-    <li class="breadcrumb-item active">Pelanggan</li>
+    <li class="breadcrumb-item active">Kartu</li>
 </ol>
 <!-- <div class="card mb-4">
                             <div class="card-body">
@@ -21,7 +21,7 @@ $rs = $dbh->query($sql);
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        <a class="btn btn-primary" href="index.php?hal=form_pelanggan">Create</a>
+        <a class="btn btn-primary" href="index.php?hal=form_kartu">Create</a>
 
     </div>
     <div class="card-body">
@@ -31,11 +31,8 @@ $rs = $dbh->query($sql);
                     <th>No</th>
                     <th>Kode</th>
                     <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tempat Lahir</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Email</th>
-                    <th>Kartu</th>
+                    <th>Diskon</th>
+                    <th>Iuran</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -44,11 +41,8 @@ $rs = $dbh->query($sql);
                     <th>No</th>
                     <th>Kode</th>
                     <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tempat Lahir</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Email</th>
-                    <th>Kartu</th>
+                    <th>Diskon</th>
+                    <th>Iuran</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -68,24 +62,15 @@ $rs = $dbh->query($sql);
                             <?= $row['nama'] ?>
                         </td>
                         <td>
-                            <?= $row['jk'] ?>
+                            <?= $row['diskon'] ?>%
                         </td>
                         <td>
-                            <?= $row['tmp_lahir'] ?>
+                            <?= $row['iuran'] ?>
                         </td>
                         <td>
-                            <?= $row['tgl_lahir'] ?>
-                        </td>
-                        <td>
-                            <?= $row['email'] ?>
-                        </td>
-                        <td>
-                            <?= $row['kartu_id'] ?>
-                        </td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="index.php?hal=view_pelanggan&id=<?= $row['id'] ?>">View</a>
-                            <a class="btn btn-sm btn-primary" href="index.php?hal=form_pelanggan&idedit=<?= $row['id'] ?>">Edit</a>
-                            <a class="btn btn-sm btn-primary" href="index.php?hal=proses_pelanggan&iddel=<?= $row['id'] ?>" onclick="if(!confirm('Anda Yakin Hapus Data Produk <?= $row['nama'] ?>?')) {return false}">Delete</a>
+                            <a class="btn btn-sm btn-primary" href="index.php?hal=view_kartu&id=<?= $row['id'] ?>">View</a>
+                            <a class="btn btn-sm btn-primary" href="index.php?hal=form_kartu&idedit=<?= $row['id'] ?>">Edit</a>
+                            <a class="btn btn-sm btn-primary" href="index.php?hal=proses_kartu&iddel=<?= $row['id'] ?>" onclick="if(!confirm('Anda Yakin Hapus Data Produk <?= $row['nama'] ?>?')) {return false}">Delete</a>
                         </td>
                     </tr>
                 <?php

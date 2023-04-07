@@ -41,5 +41,5 @@ if (isset($sql)) {
     $st->execute($ar_data);
 }
 
-header('location:list_pelanggan.php');
+header('location:index.php?hal=pelanggan');
 ?>
