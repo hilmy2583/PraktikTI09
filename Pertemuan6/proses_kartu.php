@@ -19,8 +19,8 @@ if (isset($_POST['proses'])) {
 
 
 if (isset($_GET['iddel']) && empty($_proses)) {
-    $sql = "DELETE FROM kartu WHERE id=?";
     $ar_data[] = $_GET['iddel'];
+    $sql = "DELETE FROM kartu WHERE id=?";
 } else if ($_proses == "Simpan") {
     // data baru
     $sql = "INSERT INTO kartu (kode,nama,diskon,iuran) VALUES (?,?,?,?)";
