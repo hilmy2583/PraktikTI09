@@ -17,13 +17,17 @@ class BmiPasien{
   {
     $bmi = $this->hasilBMI();
     if($bmi < 18.5){
-      echo 'Kekurangan Berat Badan';
+      $status = 'Kekurangan Berat Badan';
+      return $status;
     } elseif($bmi < 25 and $bmi >= 18.5){
-      echo 'Normal(ideal)';
+      $status = 'Normal(ideal)';
+      return $status;
     } elseif($bmi < 30 and $bmi >= 25){
-      echo 'Kelebihan Berat Badan';
+      $status = 'Kelebihan Berat Badan';
+      return $status;
     } else{
-      echo 'Kegemukan(Obesitas)';
+      $status = 'Kegemukan(Obesitas)';
+      return $status;
     }
   }
 }

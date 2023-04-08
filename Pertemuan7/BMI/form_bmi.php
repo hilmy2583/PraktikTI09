@@ -1,5 +1,11 @@
 <?php
+session_start();
+
 require_once 'class_bmipasien.php';
+
+if(!isset($_SESSION['data'])) {
+  $_SESSION['data'] = array();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pasien = new BmiPasien();
@@ -10,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pasien->tinggi = $_POST['tinggi'];
 
   $bmi = $pasien->hasilBMI();
+
+  $_SESSION['data'][] = array('name' => $pasien->nama, 'umur' => $pasien->umur, 'jk' => $pasien->jk, 'berat' => $pasien->berat, 'tinggi' => $pasien->tinggi, 'bmi' => $bmi, 'kondisi' => $pasien->statusBMI());
 }
 ?>
 <!DOCTYPE html>
@@ -90,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <p>Berat: <?php echo $pasien->berat; ?> kg</p>
       <p>Tinggi: <?php echo $pasien->tinggi; ?> cm</p>
       <p>BMI: <?php echo $bmi; ?></p>
-      <p>Status: <?php return $pasien->statusBMI(); ?></p>
+      <p>Status: <?php echo $pasien->statusBMI(); ?></p>
     <?php } ?>
   </form>
 
