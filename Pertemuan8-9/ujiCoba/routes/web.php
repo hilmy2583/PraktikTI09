@@ -19,16 +19,16 @@ Route::get('/', function () {
 });
 
 Route::get('/kabar', function () {
-    return view('kondisi');
+    return view('Pertemuan8/kondisi');
 });
 
 Route::get('/nilai', function () {
-    return view('nilai');
+    return view('Pertemuan8/nilai');
 });
 
 Route::get('/cekkesehatan', function () {
-    return view('cekKesehatan');
+    return view('Pertemuan8/cekKesehatan');
 });
 
 Route::get('/form', [FormController::class, 'index']);
-Route::post('/hasil', [FormController::class, 'hasil']);
+Route::get('/hasil', [FormController::class, 'store']);
