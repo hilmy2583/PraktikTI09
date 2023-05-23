@@ -16,7 +16,8 @@
                         </ul>
                     </div>
                     @endif <br />
-                    <form action="{{url('hasil')}}" method="get">
+                    <form action="{{url('hasil')}}" method="post">
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="nama" class="col-4 col-form-label">Nama</label>
                             <div class="col-8">

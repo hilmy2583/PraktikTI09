@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CekKesehatanController;
 use App\Http\Controllers\FormController;
 
 /*
@@ -26,9 +27,8 @@ Route::get('/nilai', function () {
     return view('Pertemuan8/nilai');
 });
 
-Route::get('/cekkesehatan', function () {
-    return view('Pertemuan8/cekKesehatan');
-});
+Route::get('/cekkesehatan', [CekKesehatanController::class, 'index']);
+Route::get('/hasilcek', [CekKesehatanController::class, 'store']);
 
 Route::get('/form', [FormController::class, 'index']);
-Route::get('/hasil', [FormController::class, 'store']);
+Route::post('/hasil', [FormController::class, 'store']);

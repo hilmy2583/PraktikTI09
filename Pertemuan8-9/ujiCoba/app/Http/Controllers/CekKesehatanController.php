@@ -12,6 +12,7 @@ class CekKesehatanController extends Controller
     public function index()
     {
         //
+        return view('Pertemuan8/cekkesehatan');
     }
 
     /**
@@ -28,6 +29,13 @@ class CekKesehatanController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'nama' => 'required|min:5|max:20',
+            'tgl_periksa' => 'required',
+            'tgl_lahir' => 'required',
+            'jk' => 'required',
+        ]);
+        return view('Pertemuan8/hasilcek', ['data' => $request]);
     }
 
     /**
