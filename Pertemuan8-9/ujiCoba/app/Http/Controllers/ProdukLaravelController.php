@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produk;
+use App\Models\KategoriProduk;
+use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class ProdukLaravelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,13 +15,17 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('Pertemuan10.admin.dashboard');
-    }
+        $kategori_produk = KategoriProduk::all();
+        // perintah ini menggunakan eloquent
+        // $kategori_produk = DB::table('kategori_produk')->get();
+        // perintah diatas menggunakan query builder
 
-    public function indexla()
-    {
-        //
-        return view('Pertemuan11.admin.dashboard');
+        $produk = DB::table('produk')
+            ->join('kategori_produk', 'produk.kategori_produk_id', '=', 'kategori_produk.id')
+            ->select('produk.*', 'kategori_produk.nama as nama_kategori')
+            ->get();
+        //perintah join diatas untuk menggabungkan tabel produk dan kategori_produk
+        return view('Pertemuan11.admin.produk.produk', compact('produk', 'kategori_produk'));
     }
 
     /**

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pesanan;
+use App\Models\Produk;
+use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class PesananLaravelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,13 +15,14 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('Pertemuan10.admin.dashboard');
-    }
-
-    public function indexla()
-    {
-        //
-        return view('Pertemuan11.admin.dashboard');
+        $produk = Produk::all();
+        
+        $pesanan = DB::table('pesanan')
+            ->join('produk', 'pesanan.produk_id', '=', 'produk.id')
+            ->select('pesanan.*', 'produk.nama as nama_produk')
+            ->get();
+        //perintah join diatas untuk menggabungkan tabel pesanan dan produk
+        return view('Pertemuan11.admin.pesanan.pesanan', compact('pesanan', 'produk'));
     }
 
     /**

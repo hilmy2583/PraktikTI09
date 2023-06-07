@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProdukLaravelController;
+use App\Http\Controllers\PesananLaravelController;
+use App\Http\Controllers\KategoriLaravelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,8 @@ Route::prefix('frontend')->group(function () {
 
 //Pertemuan11
 Route::prefix('adminla')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
     Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');
     Route::get('/kategori', [KategoriLaravelController::class, 'index'])->name('kategori');
+    Route::get('/pesanan', [PesananLaravelController::class, 'index'])->name('pesanan');
 });

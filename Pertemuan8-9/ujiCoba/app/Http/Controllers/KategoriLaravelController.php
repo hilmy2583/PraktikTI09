@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\KategoriProduk;
+use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class KategoriLaravelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,13 +14,11 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('Pertemuan10.admin.dashboard');
-    }
-
-    public function indexla()
-    {
-        //
-        return view('Pertemuan11.admin.dashboard');
+        $kategori_produk = DB::table('kategori_produk')
+            ->select('kategori_produk.*')
+            ->get();
+        //perintah join diatas untuk menggabungkan tabel produk dan kategori_produk
+        return view('Pertemuan11.admin.kategori.kategori', compact('kategori_produk'));
     }
 
     /**
