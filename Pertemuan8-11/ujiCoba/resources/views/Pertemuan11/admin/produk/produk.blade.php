@@ -15,8 +15,7 @@
 </div>
 <div class="card mb-4">
     <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        DataTable Example
+        <a class="btn btn-primary" href="{{url('adminla/produk/create')}}">Create</a>
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -64,8 +63,8 @@
                     <!-- nama_kategori diambil dari join yang ada di controller produk yang sudah dibuatkan join -->
                     <td>
                         <a class="btn btn-primary" href="">View</a>
-                        <a class="btn btn-primary" href="">Edit</a>
-                        <a class="btn btn-primary" href="" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
+                        <a class="btn btn-warning" href="{{url('adminla/produk/edit/'.$p->id)}}">Edit</a>
+                        <a class="btn btn-danger" href="{{url('adminla/produk/delete/'.$p->id)}}" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
                     </td>
                 </tr>
                 @endforeach

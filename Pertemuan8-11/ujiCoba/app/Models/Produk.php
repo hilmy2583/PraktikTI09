@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Produk extends Model
 {
     use HasFactory;
     //panggil tabel
     protected $table = 'produk';
+    public $timestamps = false;
     //kolom yang bisa diisi
     protected $fillable = [
         'kode',
@@ -26,6 +28,13 @@ class Produk extends Model
     {
         return $this->belongsTo(KategoriProduk::class);
     } //fungsi ini diarahkan ke models KategoriProduk dan berelasi one to many
+
+    public function getAllData(){
+        return DB::table('produk')
+        ->join('kategori_produk', 'produk.kategori_produk_id', '=', 'kategori_produk.id')
+        ->select('produk.*', 'kategori_produk.nama as nama_kategori')
+        ->get();
+    }
     
     public function pesanan()
     {

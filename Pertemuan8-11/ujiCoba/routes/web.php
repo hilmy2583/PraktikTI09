@@ -60,10 +60,15 @@ Route::prefix('frontend')->group(function () {
     Route::get('/about', [FrontendController::class, 'about'])->name('about');
 });
 
-//Pertemuan11
+//Pertemuan11-12
 Route::prefix('adminla')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
     Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');
+    Route::get('/produk/create', [ProdukLaravelController::class, 'create'])->name('produk/create');
+    Route::post('/produk/store', [ProdukLaravelController::class, 'store'])->name('produk/store');
+    Route::get('/produk/edit/{id}', [ProdukLaravelController::class, 'edit'])->name('produk/edit');
+    Route::post('/produk/update', [ProdukLaravelController::class, 'update'])->name('produk/update');
+    Route::get('/produk/delete/{id}', [ProdukLaravelController::class, 'destroy'])->name('produk/delete');
     Route::get('/kategori', [KategoriLaravelController::class, 'index'])->name('kategori');
     Route::get('/pesanan', [PesananLaravelController::class, 'index'])->name('pesanan');
 });

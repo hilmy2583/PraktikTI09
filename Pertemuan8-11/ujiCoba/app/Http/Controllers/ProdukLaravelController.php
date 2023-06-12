@@ -34,6 +34,11 @@ class ProdukLaravelController extends Controller
     public function create()
     {
         //
+        // perintah diatas menggunakan query builder
+        $kategori_produk = DB::table('kategori_produk')->get();
+        $produk = DB::table('produk')->get();
+
+        return view('Pertemuan11.admin.produk.create', compact('produk', 'kategori_produk'));
     }
 
     /**
@@ -42,6 +47,19 @@ class ProdukLaravelController extends Controller
     public function store(Request $request)
     {
         //
+        // perintah ini menggunakan eloquent
+        $produk = new Produk;
+        $produk->kode = $request->kode;
+        $produk->nama = $request->nama;
+        $produk->harga_jual = $request->harga_jual;
+        $produk->harga_beli = $request->harga_beli;
+        $produk->stok = $request->stok;
+        $produk->min_stok = $request->min_stok;
+        $produk->deskripsi = $request->deskripsi;
+        $produk->kategori_produk_id = $request->kategori_produk_id;
+        $produk->save();
+
+        return redirect('adminla/produk');
     }
 
     /**
@@ -58,14 +76,30 @@ class ProdukLaravelController extends Controller
     public function edit(string $id)
     {
         //
+        $kategori_produk = DB::table('kategori_produk')->get();
+        $produk = DB::table('produk')->where('id', $id)->get();
+
+        return view('Pertemuan11.admin.produk.edit', compact('produk', 'kategori_produk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        $produk = Produk::find($request->id);
+        $produk->kode = $request->kode;
+        $produk->nama = $request->nama;
+        $produk->harga_jual = $request->harga_jual;
+        $produk->harga_beli = $request->harga_beli;
+        $produk->stok = $request->stok;
+        $produk->min_stok = $request->min_stok;
+        $produk->deskripsi = $request->deskripsi;
+        $produk->kategori_produk_id = $request->kategori_produk_id;
+        $produk->save();
+
+        return redirect('adminla/produk');
     }
 
     /**
@@ -74,5 +108,6 @@ class ProdukLaravelController extends Controller
     public function destroy(string $id)
     {
         //
+        DB::table('produk')->where('id', $id)->delete();
     }
 }

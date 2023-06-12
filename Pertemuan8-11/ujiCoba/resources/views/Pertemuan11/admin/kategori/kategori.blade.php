@@ -42,8 +42,8 @@
                     <td>{{$kp->nama}}</td>
                     <td>
                         <a class="btn btn-primary" href="">View</a>
-                        <a class="btn btn-primary" href="">Edit</a>
-                        <a class="btn btn-primary" href="" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
+                        <a class="btn btn-warning" href="{{url('adminla/produk/edit/'.$p->id)}}">Edit</a>
+                        <a class="btn btn-danger" href="{{url('adminla/produk/delete/'.$p->id)}}" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
                     </td>
                 </tr>
                 @endforeach
