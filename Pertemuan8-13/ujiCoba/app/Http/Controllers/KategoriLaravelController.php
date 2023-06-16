@@ -27,6 +27,9 @@ class KategoriLaravelController extends Controller
     public function create()
     {
         //
+        $kategori_produk = DB::table('kategori_produk')->get();
+
+        return view('Pertemuan11.admin.kategori.create', compact('kategori_produk'));
     }
 
     /**
@@ -35,6 +38,11 @@ class KategoriLaravelController extends Controller
     public function store(Request $request)
     {
         //
+        $kategori_produk = new KategoriProduk;
+        $kategori_produk->nama = $request->nama;
+        $kategori_produk->save();
+
+        return redirect('adminla/kategori');
     }
 
     /**
@@ -51,14 +59,22 @@ class KategoriLaravelController extends Controller
     public function edit(string $id)
     {
         //
+        $kategori_produk = DB::table('kategori_produk')->where('id', $id)->get();
+
+        return view('Pertemuan11.admin.kategori.edit', compact('kategori_produk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        $kategori_produk = KategoriProduk::find($request->id);
+        $kategori_produk->nama = $request->nama;
+        $kategori_produk->save();
+
+        return redirect('adminla/kategori');
     }
 
     /**
@@ -67,5 +83,8 @@ class KategoriLaravelController extends Controller
     public function destroy(string $id)
     {
         //
+        DB::table('kategori_produk')->where('id', $id)->delete();
+
+        return redirect('adminla/kategori');
     }
 }

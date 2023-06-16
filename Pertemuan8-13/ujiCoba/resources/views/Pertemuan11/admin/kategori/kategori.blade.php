@@ -8,9 +8,7 @@
 </ol>
 <div class="card mb-4">
     <div class="card-body">
-        DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-        <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-        .
+        <a class="btn btn-primary" href="{{url('adminla/kategori/create')}}">Create</a>
     </div>
 </div>
 <div class="card mb-4">
@@ -36,14 +34,14 @@
             </tfoot>
             <tbody>
                 @php $no = 1; @endphp
-                @foreach($kategori_produk as $kp)
+                @foreach($kategori_produk as $p)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$kp->nama}}</td>
+                    <td>{{$p->nama}}</td>
                     <td>
                         <a class="btn btn-primary" href="">View</a>
-                        <a class="btn btn-warning" href="{{url('adminla/produk/edit/'.$p->id)}}">Edit</a>
-                        <a class="btn btn-danger" href="{{url('adminla/produk/delete/'.$p->id)}}" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
+                        <a class="btn btn-warning" href="{{url('adminla/kategori/edit/'.$p->id)}}">Edit</a>
+                        <a class="btn btn-danger" href="{{url('adminla/kategori/delete/'.$p->id)}}" onclick="if(!confirm('Anda Yakin Hapus Data Produk ?')) {return false}">Delete</a>
                     </td>
                 </tr>
                 @endforeach

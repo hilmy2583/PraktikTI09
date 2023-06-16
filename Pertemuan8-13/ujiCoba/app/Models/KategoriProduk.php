@@ -9,6 +9,7 @@ class KategoriProduk extends Model
 {
     use HasFactory;
     protected $table = 'kategori_produk';
+    public $timestamps = false;
     //kolom yang bisa diisi
     protected $fillable = [
         'nama',

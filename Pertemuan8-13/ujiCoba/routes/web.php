@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProdukLaravelController;
 use App\Http\Controllers\PesananLaravelController;
 use App\Http\Controllers\KategoriLaravelController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,14 +62,51 @@ Route::prefix('frontend')->group(function () {
 });
 
 //Pertemuan11-12
-Route::prefix('adminla')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
-    Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');
-    Route::get('/produk/create', [ProdukLaravelController::class, 'create'])->name('produk/create');
-    Route::post('/produk/store', [ProdukLaravelController::class, 'store'])->name('produk/store');
-    Route::get('/produk/edit/{id}', [ProdukLaravelController::class, 'edit'])->name('produk/edit');
-    Route::post('/produk/update', [ProdukLaravelController::class, 'update'])->name('produk/update');
-    Route::get('/produk/delete/{id}', [ProdukLaravelController::class, 'destroy'])->name('produk/delete');
-    Route::get('/kategori', [KategoriLaravelController::class, 'index'])->name('kategori');
-    Route::get('/pesanan', [PesananLaravelController::class, 'index'])->name('pesanan');
+// Route::prefix('adminla')->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
+//     Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');
+//     Route::prefix('produk')->group(function () {
+//         Route::get('/create', [ProdukLaravelController::class, 'create'])->name('produk/create');
+//         Route::post('/store', [ProdukLaravelController::class, 'store'])->name('produk/store');
+//         Route::get('/edit/{id}', [ProdukLaravelController::class, 'edit'])->name('produk/edit');
+//         Route::post('/update', [ProdukLaravelController::class, 'update'])->name('produk/update');
+//         Route::get('/delete/{id}', [ProdukLaravelController::class, 'destroy'])->name('produk/delete');
+//     });
+//     Route::get('/kategori', [KategoriLaravelController::class, 'index'])->name('kategori');
+//     Route::prefix('kategori')->group(function () {
+//         Route::get('/create', [KategoriLaravelController::class, 'create'])->name('produk/create');
+//         Route::post('/store', [KategoriLaravelController::class, 'store'])->name('produk/store');
+//         Route::get('/edit/{id}', [KategoriLaravelController::class, 'edit'])->name('produk/edit');
+//         Route::post('/update', [KategoriLaravelController::class, 'update'])->name('produk/update');
+//         Route::get('/delete/{id}', [KategoriLaravelController::class, 'destroy'])->name('produk/delete');
+//     });
+//     Route::get('/pesanan', [PesananLaravelController::class, 'index'])->name('pesanan');
+// });
+
+//Pertemuan 13
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::prefix('adminla')->name('admin.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
+        Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');
+        Route::prefix('produk')->group(function () {
+            Route::get('/create', [ProdukLaravelController::class, 'create'])->name('produk/create');
+            Route::post('/store', [ProdukLaravelController::class, 'store'])->name('produk/store');
+            Route::get('/edit/{id}', [ProdukLaravelController::class, 'edit'])->name('produk/edit');
+            Route::post('/update', [ProdukLaravelController::class, 'update'])->name('produk/update');
+            Route::get('/delete/{id}', [ProdukLaravelController::class, 'destroy'])->name('produk/delete');
+        });
+        Route::get('/kategori', [KategoriLaravelController::class, 'index'])->name('kategori');
+        Route::prefix('kategori')->group(function () {
+            Route::get('/create', [KategoriLaravelController::class, 'create'])->name('produk/create');
+            Route::post('/store', [KategoriLaravelController::class, 'store'])->name('produk/store');
+            Route::get('/edit/{id}', [KategoriLaravelController::class, 'edit'])->name('produk/edit');
+            Route::post('/update', [KategoriLaravelController::class, 'update'])->name('produk/update');
+            Route::get('/delete/{id}', [KategoriLaravelController::class, 'destroy'])->name('produk/delete');
+        });
+        Route::get('/pesanan', [PesananLaravelController::class, 'index'])->name('pesanan');
+    });
 });

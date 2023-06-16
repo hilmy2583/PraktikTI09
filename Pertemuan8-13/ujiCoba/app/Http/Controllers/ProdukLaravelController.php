@@ -109,5 +109,7 @@ class ProdukLaravelController extends Controller
     {
         //
         DB::table('produk')->where('id', $id)->delete();
+
+        return redirect('adminla/produk');
     }
 }
