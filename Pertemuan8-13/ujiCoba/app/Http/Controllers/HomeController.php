@@ -23,7 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Pertemuan11.admin.dashboard');
+        // return view('Pertemuan11.admin.dashboard');
         // return redirect('adminla/dashboard');
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'manager') {
+            return redirect('/adminla/dashboard');
+        } else {
+            return redirect('/after_register');
+        }
     }
 }

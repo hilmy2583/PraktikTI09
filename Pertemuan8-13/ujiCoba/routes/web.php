@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/after_register', function() {
+    return view('after_register');
+});
+
 //Pertemuan8
 Route::get('/kabar', function () {
     return view('Pertemuan8/kondisi');
@@ -88,7 +92,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'peran:admin-manager']], function(){
     Route::prefix('adminla')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'indexla'])->name('dashboard');
         Route::get('/produk', [ProdukLaravelController::class, 'index'])->name('produk');

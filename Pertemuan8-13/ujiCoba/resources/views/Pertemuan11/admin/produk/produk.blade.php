@@ -1,6 +1,7 @@
 @extends('Pertemuan11.admin.layout.appadmin')
 @section('content')
 
+@if (Auth::user()->role != 'pelanggan')
 <h1 class="mt-4">Produk</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a href="{{url('adminla/dashboard')}}">Dashboard</a></li>
@@ -15,7 +16,9 @@
 </div>
 <div class="card mb-4">
     <div class="card-header">
+        @if (Auth::user()->role == 'admin')
         <a class="btn btn-primary" href="{{url('adminla/produk/create')}}">Create</a>
+        @endif
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -72,5 +75,7 @@
         </table>
     </div>
 </div>
-
+@else
+@include('admin.access_denied')
+@endif
 @endsection
